@@ -41,6 +41,7 @@ This was important because pretrained models expect inputs in a very specific fo
 
 ## Results
 For the test Image we used one that contained multiple objects represented in the labels (daisy, bee & butterfly)
+![daisy](https://github.com/user-attachments/assets/68313d8f-594f-46a8-89bb-b45742e15a67)
 
 <img width="1000" height="350" alt="image" src="https://github.com/user-attachments/assets/aca6364e-3a28-4bec-b7ad-2875e994cb9c" />
 
@@ -52,7 +53,7 @@ For the test Image we used one that contained multiple objects represented in th
 
 ## Task 02: Comparing Architectures (AlexNet, ResNet101, MobileNet)
 
-Different architectures may agree on the same class or may rank classes differently depending on their learned representations and capacity.
+All architectures agreed on the same class **bee** being important but ranked classes differently depending on their learned representations and capacity.
 <img width="1000" height="650" alt="image" src="https://github.com/user-attachments/assets/1b156698-1320-47f7-8db0-7b1e1d3577ad" />
 
 
