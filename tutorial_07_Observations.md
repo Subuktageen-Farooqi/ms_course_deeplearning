@@ -74,19 +74,59 @@ The tutorial’s main conceptual takeaway is that:
 ## Tasks
 
 ### Task 01: PyTorch Implementation
+This code compares two different strategies:
+
+- Strategy 1: VGG16 feature extraction
+  - pretrained backbone mostly frozen
+  - train final classifier for CIFAR-10
+- Strategy 2: ResNet50 staged fine-tuning
+  - phase 1: train classifier head only
+  - phase 2: unfreeze last block + classifier and fine-tune
+
+So it is not just comparing two models. It is comparing two transfer-learning workflows.<br>
+Conclusion: VGG16 feature extraction performed better on CIFAR-10 in this run.
+<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/116ff8e2-054e-499f-a1ba-29799d2e0d4a" />
 
 
 ### Task 02: Improve fine-tuning results. 
 Using `Changing learning rate` `Prevent overfitting` `Early stopping` `Preprocessing formatting` `Number of Epochs` `Unfreeze more layers` `Different layers`
+- **Baseline**
+
+<img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/2a6af47b-b11e-458c-b25d-0bda2c3b79cc" /><br>
+
+- **Experiment 01: More Epochs + Lower Learning Rate + Early Stopping**
+
+  - Lower Learning Rate: a high LR can distort pretrained weights too aggressively
+  - Early Stopping: prevents unnecessary training
+  
+<br><img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/feb8c34d-ac71-4f10-a721-8da7ae0523c9" /><br>
+Only slight improvement over baseline.
+
+- **Experiment 02: More Epochs + Unfreeze more layer + Dropout + Weight Decay**
+
+  - Unfreezing more Layers: more of the feature hierarchy can specialize to the new dataset
+  - Dropout: Because increasing trainable layers increases overfitting risk
+  - Weight decay: controls model complexity by discouraging overly large weights
+  
+<br><img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/6672b927-c473-42bb-99b1-31000dcb26ff" /><br>
+Decent improvement observed.
+
 
 
 ### Task 03: Feature extraction with Resnet50. Compare the results with your custom model and VGG16
 
+<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/6a5a61c2-3d42-4ee3-9b9b-edd253b94e7c" />
 
+<img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/fc272990-1fa3-4ce7-b7d0-6eae7ba73698" />
+<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/58607517-e313-415e-af76-9dd48e0e6568" />
 
 ### Task 04: Finetuning with VGG 16 and feature extraction with Resnet50
 
+<img width="1000" height="300" alt="image" src="https://github.com/user-attachments/assets/44852c9f-e352-476f-9ecb-32d0069eb8f9" />
 
+VGG16 fine-tuning performed better than ResNet50 feature extraction in this experiment.
+
+<img width="1000" height="550" alt="image" src="https://github.com/user-attachments/assets/f0b26e5d-fb01-4058-93ba-532af18fb166" />
 
 ## Key Takeaways
 
