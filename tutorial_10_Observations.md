@@ -81,7 +81,10 @@ Then I plotted:
 - validation Dice vs epoch
 
 This made it possible to compare optimization behavior clearly.
-<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/1c7187a9-c1e5-4047-913b-afadaa49b8b0" />
+<br>
+<br><img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/1c7187a9-c1e5-4047-913b-afadaa49b8b0" />
+
+
 ## Results and Interpretation
 
 The learning-rate comparison showed how strongly optimization settings affect segmentation training:
@@ -96,6 +99,7 @@ The final comparison was done using both metric values and visual inspection of 
 
 <img width="1000" height="350" alt="image" src="https://github.com/user-attachments/assets/3cc34dee-44e9-473f-9262-aaf57f273794" />
 
+
 ## Visualization
 
 The tutorial emphasized evaluating and visualizing segmentation results, and this was one of the most useful parts of the work. For a few validation samples, I displayed:
@@ -108,6 +112,8 @@ This makes it easy to see whether the model captured object shape correctly and 
 <img width="1000" height="350" alt="image" src="https://github.com/user-attachments/assets/a5c5ab05-91a0-494f-99a9-4ef52d014d07" />
 <img width="1000" height="350" alt="image" src="https://github.com/user-attachments/assets/586e4238-8988-4782-9583-445faec9ff41" />
 <img width="1000" height="350" alt="image" src="https://github.com/user-attachments/assets/7c05f073-e073-46f5-84d9-583cb1489306" />
+
+
 ## Key Takeaways
 - U-Net is effective because it combines deep features with spatial skip connections
 - segmentation requires pixel-level labels, not only image-level labels
