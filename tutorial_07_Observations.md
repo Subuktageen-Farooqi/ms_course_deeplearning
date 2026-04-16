@@ -85,7 +85,8 @@ This code compares two different strategies:
 
 So it is not just comparing two models. It is comparing two transfer-learning workflows.<br>
 Conclusion: VGG16 feature extraction performed better on CIFAR-10 in this run.
-<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/116ff8e2-054e-499f-a1ba-29799d2e0d4a" />
+<br>
+<br><img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/116ff8e2-054e-499f-a1ba-29799d2e0d4a" />
 
 
 ### Task 02: Improve fine-tuning results. 
@@ -98,8 +99,8 @@ Using `Changing learning rate` `Prevent overfitting` `Early stopping` `Preproces
 
   - Lower Learning Rate: a high LR can distort pretrained weights too aggressively
   - Early Stopping: prevents unnecessary training
-  
-<br><img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/feb8c34d-ac71-4f10-a721-8da7ae0523c9" /><br>
+
+<img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/feb8c34d-ac71-4f10-a721-8da7ae0523c9" /><br>
 Only slight improvement over baseline.
 
 - **Experiment 02: More Epochs + Unfreeze more layer + Dropout + Weight Decay**
@@ -108,7 +109,7 @@ Only slight improvement over baseline.
   - Dropout: Because increasing trainable layers increases overfitting risk
   - Weight decay: controls model complexity by discouraging overly large weights
   
-<br><img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/6672b927-c473-42bb-99b1-31000dcb26ff" /><br>
+<img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/6672b927-c473-42bb-99b1-31000dcb26ff" /><br>
 Decent improvement observed.
 
 
