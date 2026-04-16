@@ -54,7 +54,7 @@ The model was compiled using:
 - **sparse categorical crossentropy** loss
 - **accuracy** metric 
 
-<img width="900" height="375" alt="image" src="https://github.com/user-attachments/assets/869d5f88-99c1-415d-b256-8d07e37aafb9" />
+<img width="1000" height="400" alt="image" src="https://github.com/user-attachments/assets/869d5f88-99c1-415d-b256-8d07e37aafb9" />
 
 
 ## Training and Evaluation
@@ -67,8 +67,8 @@ This part showed me the standard deep learning workflow:
 - evaluate final test accuracy
 - inspect learning curves
 
-<img width="900" height="350" alt="image" src="https://github.com/user-attachments/assets/93e43d42-467d-4c58-a826-712dd78c480d" />
-<img width="900" height="150" alt="image" src="https://github.com/user-attachments/assets/385ca973-e4cd-414f-a7ee-5d0cec2b4bf4" />
+<img width="1000" height="400" alt="image" src="https://github.com/user-attachments/assets/93e43d42-467d-4c58-a826-712dd78c480d" />
+<img width="1000" height="175" alt="image" src="https://github.com/user-attachments/assets/385ca973-e4cd-414f-a7ee-5d0cec2b4bf4" />
 
 
 ## Learning Curves
@@ -86,7 +86,7 @@ they help detect whether the model is learning correctly, and they can reveal **
 - a persistent gap between training and validation curves may indicate **poor generalization**
 - weak performance on both training and validation may indicate **underfitting**
 
-<img width="1010" height="393" alt="image" src="https://github.com/user-attachments/assets/f34603b7-1773-45e9-858e-018815915639" />
+<img width="1000" height="450" alt="image" src="https://github.com/user-attachments/assets/f34603b7-1773-45e9-858e-018815915639" />
 
 
 ## Predictions and Visualization
@@ -106,20 +106,20 @@ In the notebook, I extended the baseline with several variants:
 - **a stronger CNN with more convolution blocks and a larger dense layer**
 <img width="1000" height="550" alt="image" src="https://github.com/user-attachments/assets/17d5172b-9a95-40e4-a175-7e6b43e79a1d" />
 
-<img width="1000" height="50" alt="image" src="https://github.com/user-attachments/assets/5e2c800a-088e-4c58-b6d6-0660e2177c0c" />
+<img width="1000" height="55" alt="image" src="https://github.com/user-attachments/assets/5e2c800a-088e-4c58-b6d6-0660e2177c0c" />
 
 <img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/9da41fba-9f38-4b26-bacf-4a94736cb590" />
 
 - **a version with **Batch Normalization** for more stable learning**
-<img width="1100" height="550" alt="image" src="https://github.com/user-attachments/assets/d26cc9b5-ca48-47f8-8c9a-22247d2a160d" />
-<img width="1000" height="50" alt="image" src="https://github.com/user-attachments/assets/1c748884-6e07-4042-8fe0-300a47271afd" />
+<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/d26cc9b5-ca48-47f8-8c9a-22247d2a160d" />
+<img width="1000" height="55" alt="image" src="https://github.com/user-attachments/assets/1c748884-6e07-4042-8fe0-300a47271afd" />
 
 <img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/b8dfeb63-dd49-4a5c-ab16-3444dc18b572" />
 
 
 - **a version using **Global Average Pooling** instead of flattening to reduce parameter count**
 <img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/8a216995-ff72-4ff2-8306-e25dc1a2a26c" />
-<img width="1000" height="50" alt="image" src="https://github.com/user-attachments/assets/590c5033-86a1-45fc-a74b-0a554ad04c21" />
+<img width="1000" height="55" alt="image" src="https://github.com/user-attachments/assets/590c5033-86a1-45fc-a74b-0a554ad04c21" />
 <img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/7dd0dc1f-e0b6-438a-8d5e-986a1ab806a2" />
 
 
@@ -136,8 +136,8 @@ In the implementation, this was addressed by adding:
 - a more capable network structure
 
 <img width="1000" height="1250" alt="image" src="https://github.com/user-attachments/assets/ba375edb-ffd7-4867-bc64-8a94a4cdf0b6" />
-<img width="1000" height="50" alt="image" src="https://github.com/user-attachments/assets/5cf29829-2788-452f-a942-2e4b3631e46e" />
-<img width="1004" height="393" alt="image" src="https://github.com/user-attachments/assets/9fd66ae0-a76a-4893-ba6f-5ce27885da0c" />
+<img width="1000" height="55" alt="image" src="https://github.com/user-attachments/assets/5cf29829-2788-452f-a942-2e4b3631e46e" />
+<img width="1000" height="450" alt="image" src="https://github.com/user-attachments/assets/9fd66ae0-a76a-4893-ba6f-5ce27885da0c" />
 <img width="1573" height="550" alt="image" src="https://github.com/user-attachments/assets/d2df3656-4737-4db1-b2f7-6a2e4a5d07e2" />
 
 
@@ -149,8 +149,8 @@ This section taught me that model improvement is often not about one single tric
 - **Dropout**
 - stronger architecture control
 
-Model-building is not just about making a network deeper — it is also about controlling generalization.
-<img width="1000" height="50" alt="image" src="https://github.com/user-attachments/assets/b314125e-8d24-4a3a-82f2-a8d7e2a2832b" />
+Model-building is not just about making a network deeper — it is also about controlling generalization.<br>
+<br><img width="1000" height="50" alt="image" src="https://github.com/user-attachments/assets/b314125e-8d24-4a3a-82f2-a8d7e2a2832b" />
 <img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/b415ae6d-7594-4c8b-9a84-353cfe9acfb4" />
 
 
