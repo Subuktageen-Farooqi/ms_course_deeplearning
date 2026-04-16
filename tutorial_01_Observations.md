@@ -73,29 +73,30 @@ The tutorial used the **Iris dataset** which contains 150 datapoints, 4 features
 The workflow followed these steps:
 
 - load the dataset
-<img width="830" height="197" alt="image" style="border-radius: 30%;" src="https://github.com/user-attachments/assets/8d95f0d9-f220-4902-94bf-ba68d85a0577" />
+<img width="1000" height="250" alt="image" style="border-radius: 30%;" src="https://github.com/user-attachments/assets/8d95f0d9-f220-4902-94bf-ba68d85a0577" />
 
 - separate input features and target labels
-<img width="833" height="118" alt="image" src="https://github.com/user-attachments/assets/1908e76c-7107-4341-9b50-19c252d94e89" />
+<img width="1000" height="150" alt="image" src="https://github.com/user-attachments/assets/1908e76c-7107-4341-9b50-19c252d94e89" />
 
 - split the data into training and testing sets
-<img width="831" height="157" alt="image" src="https://github.com/user-attachments/assets/f4bb7333-bb44-42ce-8c53-ee4d97d8f12b" />
+<img width="1000" height="200" alt="image" src="https://github.com/user-attachments/assets/f4bb7333-bb44-42ce-8c53-ee4d97d8f12b" />
 
 - train the perceptron on the training data
-<img width="824" height="65" alt="image" src="https://github.com/user-attachments/assets/4e45e928-b825-413b-a661-aacc6e7938d5" />
+<img width="1000" height="75" alt="image" src="https://github.com/user-attachments/assets/4e45e928-b825-413b-a661-aacc6e7938d5" />
 
 - generate predictions on the test data
-<img width="830" height="55" alt="image" src="https://github.com/user-attachments/assets/2aa7483c-fa1e-40a2-beeb-6ed2971d0b5f" />
+<img width="1000" height="75" alt="image" src="https://github.com/user-attachments/assets/2aa7483c-fa1e-40a2-beeb-6ed2971d0b5f" />
 
 - evaluate the results using accuracy
-<img width="830" height="101" alt="image" src="https://github.com/user-attachments/assets/b8a3e864-bb42-4ee6-abe4-4e3c58e4111a" />
+<img width="1000" height="150" alt="image" src="https://github.com/user-attachments/assets/b8a3e864-bb42-4ee6-abe4-4e3c58e4111a" />
 
 
 ## Results and Evaluation
 
-<img width="878" height="40" alt="image" src="https://github.com/user-attachments/assets/262dbde0-4a26-4230-a7bc-aba7c0d5d4d4" /><br>
 The model was evaluated using **accuracy** on the test set. This was a suitable metric for this tutorial because the task was simple binary classification and the main goal was to understand the learning process rather than optimize a complex system.
-<img width="880" height="19" alt="image" src="https://github.com/user-attachments/assets/2e6fbccb-237f-46c2-bd19-72553b8a0eb0" />
+<br>
+<br><img width="1000" height="50" alt="image" src="https://github.com/user-attachments/assets/262dbde0-4a26-4230-a7bc-aba7c0d5d4d4" />
+<img width="1000" height="30" alt="image" src="https://github.com/user-attachments/assets/2e6fbccb-237f-46c2-bd19-72553b8a0eb0" />
 
 
 ## Tasks
@@ -103,23 +104,27 @@ The model was evaluated using **accuracy** on the test set. This was a suitable 
 ### 1. Manual Input Prediction
 
 Entering flower feature values manually to using the trained perceptron to predict unseen data.
-<img width="832" height="212" alt="image" src="https://github.com/user-attachments/assets/cb630042-80eb-4604-9653-522647263a76" />
+<br>
+<br><img width="1000" height="250" alt="image" src="https://github.com/user-attachments/assets/cb630042-80eb-4604-9653-522647263a76" />
 
-<img width="830" height="119" alt="image" src="https://github.com/user-attachments/assets/5174cfa1-6c32-4d86-9f97-cd4ca08d4325" />
+<img width="1000" height="150" alt="image" src="https://github.com/user-attachments/assets/5174cfa1-6c32-4d86-9f97-cd4ca08d4325" />
 
 ### 2. Replacing Step Function with Sigmoid
 
 a smoother nonlinear activation is more common in modern neural network models
-<img width="830" height="366" alt="image" src="https://github.com/user-attachments/assets/1a9f930d-ce2a-4902-8fc8-24524ef08843" />
+<br>
+<br><img width="1000" height="400" alt="image" src="https://github.com/user-attachments/assets/1a9f930d-ce2a-4902-8fc8-24524ef08843" />
 
 ### 3. Changing Labels from `1, -1` to `1, 0`
 
-`1, 0` is a better choice when using sigmoid-based binary classification, especially when outputs are interpreted relative to a threshold such as `0.5`.
-<img width="834" height="298" alt="image" src="https://github.com/user-attachments/assets/3f3821ff-1eb7-4e9f-a3da-83f3ac723ecc" />
+`1, 0` is a better choice when using sigmoid-based binary classification, when outputs are interpreted relative to a threshold such as `0.5`.
+<br>
+<br><img width="1000" height="300" alt="image" src="https://github.com/user-attachments/assets/3f3821ff-1eb7-4e9f-a3da-83f3ac723ecc" />
 
 ### 4. sklearn based implementation
 using `LogisticRegression` from  `sklearn.linear_model` to build Preceptron
-<img width="830" height="479" alt="image" src="https://github.com/user-attachments/assets/4cdd0f21-73b2-490f-a6e4-d6ace92d9c72" />
+<br>
+<br><img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/4cdd0f21-73b2-490f-a6e4-d6ace92d9c72" />
 
 ## Key Takeaways
 
@@ -127,7 +132,4 @@ using `LogisticRegression` from  `sklearn.linear_model` to build Preceptron
 - predictions come from a **weighted sum + activation**
 - learning happens through **error-based weight updates**
 - a simple model pipeline:
-  - data preparation
-  - training
-  - prediction
-  - evaluation
+    <br>**data preparation** &rarr; **training** &rarr; **prediction** &rarr; **evaluation**
