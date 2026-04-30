@@ -46,31 +46,12 @@ The tutorial used the **MNIST** dataset. MNIST contains grayscale images of hand
 
 Since the images are grayscale, each image has one channel. The images were normalized to the range **0 to 1** before training. This is important because the final layer of the autoencoder uses a sigmoid activation, which also outputs values between 0 and 1.
 
-The dataset was used as follows:
-
-* training input: `x_train`
-* training target: `x_train`
-* test input: `x_test`
-* test target: `x_test`
-
-This is correct for an autoencoder because the model learns to reconstruct the same image it receives.
 
 ## Cell 1 — TensorFlow Screenshot Code
-
-The first notebook cell contains the TensorFlow implementation copied from the PDF screenshots. The code uses:
-
-* `tensorflow`
-* `tensorflow.keras.layers`
-* `tensorflow.keras.models`
-* `tensorflow.keras.datasets.mnist`
-* `numpy`
-* `matplotlib`
 
 The TensorFlow model follows this structure:
 
 ### Encoder
-
-The encoder uses:
 
 * a `Conv2D` layer with 32 filters
 * a `MaxPooling2D` layer
@@ -80,8 +61,6 @@ The encoder uses:
 This reduces the MNIST image into a smaller feature representation.
 
 ### Decoder
-
-The decoder uses:
 
 * a `Conv2D` layer with 64 filters
 * an `UpSampling2D` layer
@@ -93,15 +72,11 @@ The final output has the same image shape as the input: **28 × 28 × 1**.
 
 ## Why Binary Cross-Entropy Was Used
 
-The TensorFlow tutorial compiles the model using:
-
-```python
-loss='binary_crossentropy'
-```
-
 This is suitable here because the MNIST images are normalized between 0 and 1, and the model output also uses a sigmoid activation. The loss compares the reconstructed pixel values with the original pixel values.
 
-For a basic MNIST reconstruction tutorial, binary cross-entropy is a reasonable reconstruction loss.
+
+![Tensorflow Output](images/T12_Tensorflow_output.png)
+
 
 ## Cell 2 — PyTorch Equivalent Implementation
 
@@ -113,41 +88,10 @@ The second part of the notebook contains a PyTorch version of the same basic aut
 * final sigmoid output
 * reconstruction target equal to the input image
 
-The PyTorch implementation uses:
-
-* `torch`
-* `torch.nn`
-* `torch.optim`
-* `torchvision.datasets.MNIST`
-* `torchvision.transforms.ToTensor`
-* `DataLoader`
-* `matplotlib`
-
-The training loop follows the standard PyTorch workflow:
-
-1. set the model to training mode
-2. send images to the selected device
-3. run the forward pass
-4. calculate reconstruction loss
-5. backpropagate
-6. update model weights
-
 The target is not the digit label. The target is the input image itself.
 
-## Guardrails Used in the Notebook
-
-To avoid invalid results, I followed these guardrails:
-
-* labels were not used for training because this is not a classification task
-* training data was used only for training
-* test data was kept separate for evaluation and visualization
-* validation or test data was not mixed into the training loop
-* model evaluation was done using `model.eval()`
-* inference was done inside `torch.no_grad()`
-* reconstruction targets were the original images, not labels
-* outputs were kept in the same range as the normalized input images
-
-These guardrails are important because an autoencoder can easily be implemented incorrectly if labels are accidentally used or if test images are included during training.
+![Training](images/T12_Pytorch_output_1.png)
+![PyTorch Output](images/T12_Pytorch_output_2.png)
 
 ## Visualization of Results
 
@@ -207,6 +151,11 @@ The decoder then reconstructed the image using convolution and upsampling blocks
 
 This model is still simple enough for a learning tutorial, but it is more powerful than the basic model.
 
+![training](images/T12_TASK_training_both_models.png)
+![training](images/T12_TASK_model_comparision.png)
+![training](images/T12_TASK_model_comparision_2.png)
+
+    
 ## Why the Improved Model Can Perform Better
 
 The improved model can reconstruct better images because it has more feature extraction capacity. The additional convolutional layers allow the encoder to learn more complex local patterns in the digit images.
@@ -228,13 +177,6 @@ The comparison is:
 | Basic Autoencoder    | Understand autoencoder structure | Simple and easy to follow                  |
 | Improved Autoencoder | Address tutorial task            | Better feature learning and reconstruction |
 
-## Expected Results
-
-The basic autoencoder should reconstruct the general shape of MNIST digits, but some outputs may look blurry.
-
-The improved autoencoder should produce cleaner reconstructions because it has more convolutional capacity.
-
-The expected improvement is not that the model becomes perfect, but that the reconstructed digits should be more visually similar to the input digits.
 
 ## Key Takeaways
 
