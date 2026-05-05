@@ -240,6 +240,60 @@ For the tutorial YOLO setup:
 
 So a valid YOLO output should have 75 channels.
 
+<div align="center">
+  
+<table>
+<tr>
+<td valign="top">
+
+### Improved SSD Training Summary
+
+| Epoch | Training Loss | Validation mAP50 |
+| ----: | ------------: | ---------------: |
+|  1/25 |        0.8413 |           0.1448 |
+|  2/25 |        0.6558 |           0.1444 |
+|  3/25 |        0.6277 |           0.2735 |
+|  4/25 |        0.6218 |           0.3390 |
+|  5/25 |        0.6052 |           0.1080 |
+|   ... |           ... |              ... |
+| 21/25 |        0.5590 |           0.3040 |
+| 22/25 |        0.5623 |           0.3437 |
+| 23/25 |        0.5557 |           0.3542 |
+| 24/25 |        0.5513 |           0.4140 |
+| 25/25 |        0.5413 |           0.3700 |
+
+</td>
+<td valign="top">
+
+### Improved YOLO Training Summary
+
+| Epoch | Training Loss | Validation mAP50 |
+| ----: | ------------: | ---------------: |
+|  1/25 |        0.4459 |           0.0411 |
+|  2/25 |        0.1061 |           0.0729 |
+|  3/25 |        0.0844 |           0.0119 |
+|  4/25 |        0.0664 |           0.0472 |
+|  5/25 |        0.0618 |           0.0719 |
+|   ... |           ... |              ... |
+| 21/25 |        0.0228 |           0.0893 |
+| 22/25 |        0.0222 |           0.0437 |
+| 23/25 |        0.0213 |           0.0573 |
+| 24/25 |        0.0194 |           0.1209 |
+| 25/25 |        0.0186 |           0.0934 |
+
+</td>
+</tr>
+</table>
+
+### Task 02 Test Metrics
+
+| Model                | Test mAP50 | Test mAP50-95 |
+| -------------------- | ---------: | ------------: |
+| Improved Custom SSD  |   0.465758 |      0.152801 |
+| Improved Custom YOLO |   0.128939 |      0.023762 |
+
+</div>
+
 ## Task 3 — Pretrained SSD and YOLO
 
 Task 3 uses one pretrained SSD-style model and one pretrained YOLO model.
@@ -253,17 +307,19 @@ For YOLO, the code uses Ultralytics YOLO, starting from `yolov8n.pt`, and conver
 
 This is more appropriate than trying to manually train the custom SSD/YOLO architectures from scratch because pretrained detection models already include the practical components needed for training and inference.
 
+![](images/T09_task03_yolo_curves.png) ![](images/T09_task03_yolo_confusion.png) ![]()
 
+## Results
 
-## Expected Results
+The tutorial SSD and YOLO models should successfully produce prediction tensors on real images. The pretrained SSD model should train for a small number of epochs and produce detections for pedestrians. The pretrained YOLO model should train on the converted YOLO-format dataset and report validation/test metrics through the Ultralytics training pipeline.
 
-The custom SSD and YOLO models should successfully produce prediction tensors on real images.
+### YOLO
+![asd](images/T09_task_01_output_yolo.png) ![asd](images/T09_task_02_output_yolo.png) ![dsds](images/T09_task_03_output_yolo.png)
+![gdfg](images/T09_yolo_training_loss_curves.png) ![gdf](images/T09_yolo_mAP_curves.png)
+### SSD
+![gdf](images/T09_task_01_output_ssd.png) ![hg](images/T09_task_02_output_ssd.png) ![juy](images/T09_task_03_output_ssd.png)
+![nc](images/T09_ssd_training_loss_curves.png) ![hg](images/T09_ssd_mAP_curves.png)
 
-The pretrained SSD model should train for a small number of epochs and produce detections for pedestrians.
-
-The pretrained YOLO model should train on the converted YOLO-format dataset and report validation/test metrics through the Ultralytics training pipeline.
-
-Because this is a small learning dataset and the training epochs are intentionally limited, the results should be interpreted as a tutorial demonstration rather than a final benchmark.
 
 ## Key Takeaways
 
@@ -275,5 +331,3 @@ Because this is a small learning dataset and the training epochs are intentional
 * pretrained detection models are more practical for training on small datasets
 * dataset formatting is different for TorchVision SSD-style models and YOLO models
 * object detection evaluation must keep training, validation, and test data separate
-
-Overall, the tutorial is useful because it introduces the internal structure of SSD and YOLO while also showing why pretrained detection models are usually preferred for practical training.
