@@ -4,11 +4,6 @@ This tutorial focused on **English to Urdu translation using an RNN**. The main 
 
 The tutorial uses an **encoder-decoder RNN architecture**. The encoder reads the English sentence and compresses it into a hidden representation. The decoder then uses that representation to generate the Urdu translation.
 
-The notebook implementation was organized into three main parts:
-
-* **Cell 1:** TensorFlow/Keras screenshot code copied from the tutorial PDF
-* **Cell 2:** PyTorch implementation of the same encoder-decoder RNN translation idea
-* **Task section:** custom dataset testing, hyperparameter changes, and one-to-many baby-name generation
 
 ## What I Learned
 
@@ -33,6 +28,31 @@ For example:
 `Urdu: مجھے پروگرامنگ پسند ہے`
 
 The model must learn a mapping from one sequence to another. This is different from classification because the output is not a single class label. The output is another sequence.
+
+## Why the Urdu Target Is Shifted
+
+In sequence-to-sequence training, the decoder is usually trained to predict the next token.
+
+For example, if the Urdu target is:
+
+***`مجھے پروگرامنگ پسند ہے`***
+
+The decoder receives the previous token and predicts the next token. This is why the target sequence is shifted.
+
+The PyTorch implementation makes this clearer by using:
+
+* `<SOS>` at the beginning of the target sequence
+* `<EOS>` at the end of the target sequence
+
+The decoder input is:
+
+`<SOS> مجھے پروگرامنگ پسند`
+
+The decoder target is:
+
+***`مجھے پروگرامنگ پسند ہے <EOS>`***
+
+This keeps the training objective aligned with sequence generation.
 
 ## Dataset Used in the Tutorial
 
@@ -94,30 +114,25 @@ The decoder contains:
 
 The decoder predicts one Urdu token at each time step.
 
-### Why the Urdu Target Is Shifted
+### Generate Translations
 
-In sequence-to-sequence training, the decoder is usually trained to predict the next token.
+After training, the model generates Urdu tokens one by one.
 
-For example, if the Urdu target is:
+The generation process is:
 
-`مجھے پروگرامنگ پسند ہے`
+1. encode the English sentence
+2. initialize the decoder with the encoder hidden state
+3. start decoding with `<SOS>`
+4. predict the next Urdu token
+5. feed the predicted token back into the decoder
+6. stop when `<EOS>` is predicted or the maximum length is reached
 
-The decoder receives the previous token and predicts the next token. This is why the target sequence is shifted.
+This is the basic inference process for an encoder-decoder translation model.
 
-The PyTorch implementation makes this clearer by using:
+![](images/T14_B_tensorflow_model.png)
+![](images/T14_B_tensorflow_output.png)
 
-* `<SOS>` at the beginning of the target sequence
-* `<EOS>` at the end of the target sequence
 
-The decoder input is:
-
-`<SOS> مجھے پروگرامنگ پسند`
-
-The decoder target is:
-
-`مجھے پروگرامنگ پسند ہے <EOS>`
-
-This keeps the training objective aligned with sequence generation.
 
 ## PyTorch Implementation
 
@@ -125,16 +140,10 @@ The model structure is:
 
 `English token IDs → EncoderRNN → hidden state → DecoderRNN → Urdu token logits`
 
-### PyTorch Encoder Structure
-
 The PyTorch encoder contains:
 
 * `nn.Embedding`
 * `nn.RNN`
-
-The embedding layer converts English word IDs into dense vectors. The RNN processes those vectors sequentially and returns a final hidden state.
-
-### PyTorch Decoder Structure
 
 The PyTorch decoder contains:
 
@@ -142,9 +151,14 @@ The PyTorch decoder contains:
 * `nn.RNN`
 * `nn.Linear`
 
-The decoder receives Urdu input tokens during training and predicts the next Urdu token at each position.
+The embedding layer converts English word IDs into dense vectors. The RNN processes those vectors sequentially and returns a final hidden state. The decoder receives Urdu input tokens during training and predicts the next Urdu token at each position.
 
-## Task 1 — Make a Custom Dataset and Test It
+![](images/T14_B_pytorch_vocab.png)
+![](images/T14_B_pytorch_train_test.png)
+![](images/T14_B_pytorch_output.png)
+
+
+## Task 01 - Make a Custom Dataset and Test It
 
 The first task at the end of the tutorial asked to make a custom dataset and test it with the model.
 
@@ -159,8 +173,9 @@ For this task, a small custom English-Urdu dataset was created. It included simp
 
 The model was tested on held-out examples and additional simple English sentences.
 
+![](images/.png)
 
-## Task 2 — Changing Units, Epochs, and Learning Rate
+## Task 02 - Changing Units, Epochs, and Learning Rate
 
 The second task asked to change:
 
@@ -180,6 +195,42 @@ Example configurations included:
 
 The validation set was used to compare these configurations. The best configuration was selected based on validation accuracy and validation loss, then evaluated on the held-out test set.
 
+![](images/T14_B_task_02_training_evaluation.png)
+![](images/T14_B_task_02_best_result.png)
+
+## Task 3 — One-to-Many RNN for Baby Name Generation
+
+The third task asked to develop a one-to-many RNN model for baby-name generation.A one-to-many RNN generates a sequence from a starting input. In the notebook, this was implemented as a character-level name generator.
+
+The model learns from a small list of names such as:
+`Ayan`, `Ali`, `Ahmed`, `Omar`, `Zain`, `Sara`, `Ayesha`, `Fatima`, `Mariam`
+
+The model learns to predict the next character in a name.
+
+### Baby Name Generation Model
+
+The baby-name model uses:
+
+* character vocabulary
+* start token
+* end token
+* embedding layer
+* Simple RNN layer
+* linear output layer
+
+The training objective is next-character prediction. For example, for the name `Ayan`, the model sees: `<START> A y a n` and learns to predict: `A y a n <END>`. During generation, a starting character is given and the model predicts one character at a time.
+
+### Why This Is One-to-Many
+
+The baby-name model is one-to-many because it starts from a small input, such as a start character, and generates a sequence of output characters.
+
+For example: `A → A y a n`
+
+The input is one starting symbol, but the output is a full name sequence.
+
+![](images/T14_B_task_03_training.png)
+![](images/T14_B_task_03_output.png)
+
 ## Evaluation Metrics
 
 The notebook reports:
@@ -193,79 +244,10 @@ Padding tokens are ignored in both loss and accuracy.
 
 This is important because otherwise the model could appear better simply by predicting padding tokens correctly.
 
-## Generate Translations
-
-After training, the model generates Urdu tokens one by one.
-
-The generation process is:
-
-1. encode the English sentence
-2. initialize the decoder with the encoder hidden state
-3. start decoding with `<SOS>`
-4. predict the next Urdu token
-5. feed the predicted token back into the decoder
-6. stop when `<EOS>` is predicted or the maximum length is reached
-
-This is the basic inference process for an encoder-decoder translation model.
-
-## Task 3 — One-to-Many RNN for Baby Name Generation
-
-The third task asked to develop a one-to-many RNN model for baby-name generation.
-
-A one-to-many RNN generates a sequence from a starting input. In the notebook, this was implemented as a character-level name generator.
-
-The model learns from a small list of names such as:
-
-* `Ayan`
-* `Ali`
-* `Ahmed`
-* `Omar`
-* `Zain`
-* `Sara`
-* `Ayesha`
-* `Fatima`
-* `Mariam`
-
-The model learns to predict the next character in a name.
-
-## Baby Name Generation Model
-
-The baby-name model uses:
-
-* character vocabulary
-* start token
-* end token
-* embedding layer
-* Simple RNN layer
-* linear output layer
-
-The training objective is next-character prediction.
-
-For example, for the name `Ayan`, the model sees:
-
-`<START> A y a n`
-
-and learns to predict:
-
-`A y a n <END>`
-
-During generation, a starting character is given and the model predicts one character at a time.
-
-## Why This Is One-to-Many
-
-The baby-name model is one-to-many because it starts from a small input, such as a start character, and generates a sequence of output characters.
-
-For example:
-
-`A → A y a n`
-
-The input is one starting symbol, but the output is a full name sequence.
 
 ## Limitations
 
 This tutorial implementation is intentionally simple.
-
-Important limitations include:
 
 * the translation dataset is very small
 * Simple RNNs are weaker than LSTM, GRU, and Transformer models
