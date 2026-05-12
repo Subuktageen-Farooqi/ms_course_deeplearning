@@ -157,8 +157,8 @@ The augmented dataset still uses only the MNIST training split, so no test image
 
 <div align="center">
   
-![](T16_comparision_discriminator.png)
-![](T16_comparision_generator.png)
+![](images/T16_comparision_discriminator.png)
+![](images/T16_comparision_generator.png)
 
 </div>
 
