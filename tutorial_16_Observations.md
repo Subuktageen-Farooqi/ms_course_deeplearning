@@ -3,13 +3,6 @@
 ## Overview
 
 This tutorial focused on **Generative Adversarial Networks (GANs)** using the MNIST handwritten digit dataset.
-
-The tutorial objectives were:
-
-* understand the architecture of GANs
-* implement a GAN
-* visualize generated results
-
 A GAN contains two neural networks:
 
 * **Generator:** takes random noise as input and generates fake images
@@ -17,26 +10,13 @@ A GAN contains two neural networks:
 
 The two networks are trained adversarially. The discriminator learns to distinguish real MNIST images from generated images, while the generator learns to fool the discriminator.
 
+
 ## Dataset
 
-The tutorial uses the **MNIST** dataset.
+The tutorial uses the **MNIST** dataset. MNIST images are grayscale images of handwritten digits with shape `1 × 28 × 28`. The images are normalized to the range `[-1, 1]` because the generator output uses `Tanh`.
 
-MNIST images are grayscale images of handwritten digits with shape `1 × 28 × 28`.
 
-The images are normalized to the range `[-1, 1]` because the generator output uses `Tanh`.
-
-## Notebook Structure
-
-| Section | Description |
-|---|---|
-| Cell 1 | Code copied from the tutorial screenshots |
-| Cell 2 | Clean PyTorch implementation of the same GAN |
-| Task 1 | Change epochs, layers, and architecture depth |
-| Task 2 | Replace fully connected layers with convolutional layers |
-| Task 3 | Train a GAN on augmented MNIST images |
-| Final Cell | Compare loss curves and generated samples |
-
-## Cell 1 — Tutorial Screenshot Code
+## Tutorial Implementation
 
 The first cell contains the code from the tutorial PDF screenshots.
 
@@ -49,23 +29,14 @@ It includes:
 * defining BCE loss and Adam optimizers
 * training the GAN
 * visualizing generated images
+  
+![](images/T16_tensorflow_1.png)
+![](images/T16_tensorflow_2.png)
+![](images/T16_tensorflow_3.png)
+![](images/T16_tensorflow_4.png)
+![](images/T16_tensorflow_5.png)
+![](images/T16_tensorflow_6.png)
 
-## Cell 2 — PyTorch Implementation
-
-The second cell implements the same GAN idea in PyTorch with cleaner organization.
-
-The model remains a simple fully connected GAN:
-
-`noise vector → Generator → generated 28×28 image`
-
-and:
-
-`real/fake image → Discriminator → probability of being real`
-
-The training loop alternates between:
-
-1. training the discriminator on real and fake images
-2. training the generator to fool the discriminator
 
 ## Task 1 — Change Epochs, Layers, etc.
 
@@ -83,6 +54,26 @@ The number of epochs can be changed using:
 ```python
 TASK1_EPOCHS = 10
 ```
+<div align="center">
+
+| Epoch | D Loss | G Loss |
+|---:|---:|---:|
+| 1 | 0.527833 | 1.962618 |
+| 2 | 0.353612 | 7.407426 |
+| 3 | 0.173426 | 9.518512 |
+| 4 | 0.612551 | 5.515673 |
+| 5 | 0.217423 | 8.909082 |
+| 6 | 0.177561 | 8.749610 |
+| 7 | 0.553509 | 8.486512 |
+| 8 | 1.326552 | 8.412193 |
+| 9 | 0.726846 | 5.587872 |
+| 10 | 1.427726 | 3.906267 |
+
+![](images/T16_task_01_1.png)
+![](images/T16_task_01_2.png)
+![](images/T16_task_01_3.png)
+
+</div>
 
 This satisfies the task of changing epochs, layers, and related settings.
 
@@ -104,6 +95,27 @@ The discriminator uses:
 * `LeakyReLU`
 * `Sigmoid`
 
+<div align="center">
+
+| Epoch | D Loss | G Loss |
+|---:|---:|---:|
+| 1 | 0.131226 | 5.019188 |
+| 2 | 0.006217 | 6.931746 |
+| 3 | 0.013622 | 6.835582 |
+| 4 | 0.014951 | 6.768475 |
+| 5 | 0.005059 | 7.585613 |
+| 6 | 0.001145 | 8.030441 |
+| 7 | 0.000754 | 8.275624 |
+| 8 | 0.000477 | 8.560059 |
+| 9 | 0.000311 | 8.949617 |
+| 10 | 0.000303 | 8.903383 |
+
+![](images/T16_task_02_1.png)
+![](images/T16_task_02_2.png)
+![](images/T16_task_02_3.png)
+
+</div>
+
 This replaces the fully connected image-generation architecture with a convolutional architecture.
 
 ## Task 3 — GAN for Augmented Images
@@ -116,21 +128,39 @@ The augmentation includes:
 * random translation
 * random scaling
 
+<div align="center">
+
+| Epoch | D Loss | G Loss |
+|---:|---:|---:|
+| 1 | 0.078338 | 5.497996 |
+| 2 | 0.031233 | 5.868295 |
+| 3 | 0.016406 | 7.229493 |
+| 4 | 0.006460 | 7.648999 |
+| 5 | 0.001364 | 7.912468 |
+| 6 | 0.006136 | 6.947454 |
+| 7 | 0.007189 | 7.379180 |
+| 8 | 0.051445 | 5.173863 |
+| 9 | 0.121330 | 4.272436 |
+| 10 | 0.159736 | 3.684620 |
+
+![](images/T16_task_03_1.png)
+![](images/T16_task_03_2.png)
+![](images/T16_task_03_3.png)
+
+</div>
+
 This addresses the task of developing the model for augmented images.
 
 The augmented dataset still uses only the MNIST training split, so no test images are mixed into training.
 
-## Guardrails
+## Final Comparision
 
-The notebook uses the following guardrails:
+<div align="center">
+  
+![](T16_comparision_discriminator.png)
+![](T16_comparision_generator.png)
 
-* MNIST training data is used for GAN training
-* test data is not mixed into GAN training
-* generated images are visualized after converting from `[-1, 1]` display range to `[0, 1]`
-* generator output uses `Tanh`, matching normalized image data
-* discriminator output uses `Sigmoid`, matching binary cross-entropy loss
-* loss curves are shown but not treated as a complete image-quality metric
-* visual inspection is used along with generator/discriminator losses
+</div>
 
 ## Important Notes
 
@@ -149,13 +179,3 @@ Therefore, generated image samples should always be inspected together with the 
 * convolutional GANs are more suitable for image generation
 * data augmentation can change the target image distribution learned by the GAN
 * GAN training is unstable and should be judged using both losses and image samples
-
-## Final Result
-
-The notebook implements the tutorial GAN and completes all PDF tasks:
-
-| Task | Status |
-|---|---|
-| Change number of epochs/layers | Completed |
-| Replace fully connected layers with convolutional layers | Completed |
-| Develop model for augmented images | Completed |
