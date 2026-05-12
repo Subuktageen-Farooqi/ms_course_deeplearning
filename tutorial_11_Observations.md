@@ -8,7 +8,8 @@ This tutorial focused on **semantic segmentation using a pre-trained model**, sp
 
 Semantic segmentation assigns a class label to **every pixel** in an image. In the tutorial screenshots, a pre-trained DeepLabV3 model was loaded and used directly on a random image. The output segmentation map was converted into class predictions, then decoded into colors for visualization.
 
-This is the simplest possible workflow for semantic segmentation:
+### Tutorial Implementation
+This is the simple workflow for semantic segmentation:
 
 1. load model
 2. load image
@@ -17,17 +18,7 @@ This is the simplest possible workflow for semantic segmentation:
 5. decode predictions
 6. visualize segmentation map
 
-## Tutorial Implementation
-This is the simplest possible workflow for semantic segmentation:
-
-1. load model
-2. load image
-3. preprocess image
-4. run inference
-5. decode predictions
-6. visualize segmentation map
-
-![](images/T11_tensorflow_01.png)
+![](images/T11_tensorflow_1.png)
 
 ## Task 01 - DeepLabV3 on Oxford-IIIT Pet
 
@@ -49,10 +40,12 @@ The workflow in Cell 2 includes:
 This cell is the practical equivalent of the screenshot pipeline, but on a real dataset instead of a single random image.
 
 <div align="center">
+  
   ![](images/T11_task_01_1.png)
   ![](images/T11_task_01_2.png)
   ![](images/T11_task_01_3.png)
   ![](images/T11_task_01_4.png)
+  
 </div>
 
 ## Why Oxford-IIIT Pet Was Appropriate
@@ -88,7 +81,9 @@ The Mask R-CNN cell includes:
 * visualization of predicted masks
 
 <div align="center">
-  ![](images/T11_task_02_1.png)
+  
+  ![](images/T11_task_02.png)
+  
 </div>
 
 ## Results and Interpretation
